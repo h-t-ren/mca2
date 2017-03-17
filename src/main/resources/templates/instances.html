@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/m-layout :: headFragment">
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="navbar clearfix navbar-fixed-top" id="header"
+		th:include="fragments/m-layout :: headerFragment"> </header>
+	<!--/HEADER -->
+
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<div id="sidebar" class="sidebar"
+			th:include="fragments/m-layout :: sidebarFragment"></div>
+		<!-- /SIDEBAR -->
+		<!-- maincontent -->
+		<div id="main-content"
+			th:include="fragments/m-layout :: main-contentFragment">
+			<!-- BREADCRUMBS -->
+			<ul class="breadcrumb" id="BREADCRUMBS">
+				<li><i class="fa fa-home"></i> <a href="/problems.html"  th:href="@{/}">Problems</a></li>
+			    <li><a href="/instance.html"  th:href="@{/instances(problemId=${problem.idPrblm})}">Instances</a></li>
+			</ul>
+			<!-- /BREADCRUMBS -->
+ 
+			<!-- mainContentBox -->
+			<div id="mainContentBox">
+				<div class="box border blue">
+			       <div class="box-title"><h4  th:text="'Problem: '+${problem.snm}+' > Instances'"></h4>
+			      <ul  style="list-style-type:none" class="pull-right">			 
+			       <li class="dropdown">
+						<a href="instanceForm.html" th:href="@{/instanceForm(problemId=${problem.idPrblm})}" class="dropdown-toggle">
+							<span><i class="fa fa-plus"></i>
+							Create instance</span>
+						</a>
+			       </li></ul>
+			      
+			       </div>
+				    <div class="box-body">
+			        <div class="tabbable header-tabs">
+									<table cellpadding="0" cellspacing="0" border="0" class="exportdatatable datatable table table-striped table-bordered table-hover" width="100%">
+											<thead>
+												<tr>
+													<th>ID</th>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Date</th>
+													<th>Operation</th>
+													<th>Analyses</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="i : ${instances}">
+													<td th:text="${i.idInstnc}">ID</td>
+													<td th:text="${i.nm}">name</td>
+													<td th:text="${i.dscr}">Description</td>
+													<td th:text="${#dates.format(i.created,'yyyy/MM/dd')}">">creation date</td>
+													<td>
+													<a href="#" th:href="@{/instanceView(problemId=${problem.idPrblm},instanceId=${i.idInstnc})}"><i class="fa  fa-file-text-o"></i><span>View</span></a>
+													<a class="deleteinstance"  href="#"><i class="fa fa-minus-square-o"></i><span th:id="${i.idInstnc}">Delete</span></a>   
+													</td>
+													<td>
+													<a href="#" th:href="@{/analyses(problemId=${problem.idPrblm},instanceId=${i.idInstnc})}"><i class="fa  fa-files-o"></i><span>Analyses</span></a>
+													</td>
+												</tr>
+									
+											</tbody>
+											
+										</table>
+				</div>
+			</div>
+			</div>
+			</div>
+			<!-- /mainContentBox -->
+		</div>
+		<!-- /maincontent -->
+	</section>
+	<!--/PAGE -->
+	
+	<div th:include="fragments/m-layout :: footerFragment"></div>
+
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<div th:include="fragments/m-layout :: jsFragment"></div>
+	<script>
+		jQuery(document).ready(function() {		
+		 App.init(); //Initialise plugins and elements
+		  $(".deleteinstance").click(function(event){	        
+		  dalert.ReplaceConfirm();
+          confirm("Are you sure to delete this instance?","Delete Instance confirm !",function(result){
+          if(result){
+              location.href = "/mca/instanceDelete?instanceId="+event.target.id;
+           }
+           else{
+           }
+           });
+		 })
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">>
+<head th:fragment="headFragment">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8" />
+	<title>MCA</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="Hongtao Ren" />
+	<!-- STYLESHEETS --><!--[if lt IE 9]><script  th:src="@{/js/flot/excanvas.min.js}" src="../../static/js/flot/excanvas.min.js"></script><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+	<link rel="stylesheet" type="text/css" href="../../static/css/cloud-admin.css" th:href="@{/css/cloud-admin.css}" />
+	<link rel="stylesheet" type="text/css"  href="../../static/css/themes/default.css" th:href="@{/css/themes/default.css}" id="skin-switcher" />
+	<link rel="stylesheet" type="text/css"  href="../../static/css/responsive.css" th:href="@{/css/responsive.css}" />
+	
+	<link href="../../static/font-awesome/css/font-awesome.min.css" th:href="@{/font-awesome/css/font-awesome.min.css}"  rel="stylesheet" />	
+	<!-- DATA TABLES -->
+	<!-- <link rel="stylesheet" type="text/css" th:href="@{/js/datatables/media/css/jquery.dataTables.css}"/> -->
+	 <link rel="stylesheet" type="text/css" th:href="@{/js/datatables/media/css/dataTables.bootstrap.min.css}"/>
+	 <link rel="stylesheet" type="text/css" th:href="@{/js/datatables/extensions/Buttons/css/buttons.dataTables.css}"/>
+     <link rel="stylesheet" type="text/css" th:href="@{/js/handsontable/handsontable.full.min.css}"/>
+	<link rel="stylesheet" th:href="@{/js/jquery-ui-1.10.3.custom/css/custom-theme/jquery-ui-1.10.3.custom.min.css}"/>
+	<!-- FONTS -->
+	<!--   <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css' />-->
+	
+</head>
+<body>
+	<!-- HEADER -->
+	<header  class="navbar clearfix" id="header" th:fragment="headerFragment">
+		<div class="container">
+				<div class="navbar-brand">
+					<!-- COMPANY LOGO -->
+			
+					<a href="index.html" th:href="@{/}">
+					<img src="" th:src="@{/img/logo/mca.png}" class="logoimg1"/>
+					</a>
+			
+					<!-- /COMPANY LOGO -->
+					
+					
+				</div>		
+				<!-- BEGIN TOP NAVIGATION MENU -->					
+				<ul class="nav navbar-nav pull-right">
+				
+				  <li class="dropdown">
+						<a href="#" th:href="@{/notImpl}" class="dropdown-toggle">
+							<span><i class="fa fa-envelope-o"></i>
+							Contact</span>
+						</a>
+				  </li>
+				    <li class="dropdown">
+						<a href="#" th:href="@{/notImpl}" class="dropdown-toggle">
+							<span><i class="fa fa-book"></i>
+							Documentation</span>
+						</a>
+				  </li>
+				   
+		
+				  <li class="dropdown" sec:authorize="isAuthenticated()">
+				  <a href="#" th:href="@{/notImpl}" class="dropdown-toggle">
+				      <span><i class="fa fa-user"></i><span sec:authentication="name"></span></span>
+					</a>
+				    </li>
+				    
+				      <li class="dropdown" sec:authorize="isAuthenticated()">
+						<a href="#" th:href="@{/logout}" class="dropdown-toggle"><span><i class="fa fa-sign-out"></i>Logout</span></a>
+				    </li>
+				   
+				
+				</ul>
+				<!-- END TOP NAVIGATION MENU -->
+		</div>
+		
+		
+	</header>
+	<!--/HEADER -->
+	
+	<!-- PAGE -->
+	<section id="page">
+			
+	   <div id="main-content" th:fragment="main-contentFragment">
+			<div class="container">
+				<div class="row">
+					<div id="content">
+						<!-- PAGE HEADER-->
+						<div class="row">
+							<div>
+								<div class="page-header">
+									<!-- STYLER -->
+									
+									<!-- /STYLER -->
+									<!-- BREADCRUMBS -->
+									<ul class="breadcrumb" th:include=":: #BREADCRUMBS">
+										<li>
+											<i class="fa fa-home"></i>
+											<a href="index.html" th:href="@{/}" >主页</a>
+										</li>
+										
+									</ul>
+									<!-- /BREADCRUMBS -->
+					
+								</div>
+							</div>
+						</div>
+						<!-- /PAGE HEADER -->
+						<!-- body -->
+						<div class="row">
+							<div>
+								<!-- mainContentBox -->
+							     <div th:include=":: #mainContentBox">
+								</div>
+								<!-- /mainContentBox -->
+							</div>
+						</div>
+						<!-- /body -->
+				
+					</div><!-- /CONTENT-->
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<div th:fragment="footerFragment">
+    <footer class="footer navbar-fixed-bottom">
+     <div id="footer_d" class="container text-right">
+             Copyright © mca.com All Rights Reserved, 2015-
+     </div>
+    </footer>
+    </div>
+
+
+	<!--/PAGE -->
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<div th:fragment="jsFragment">
+	<script src="../../static/js/jquery/jquery-2.0.3.min.js" th:src="@{/js/jquery/jquery-2.0.3.min.js}"></script>
+		<script src="../../static/js/jquery/jquery.cookie.js" th:src="@{/js/jquery/jquery.cookie.js}"></script>
+	<!-- JQUERY UI-->
+	<script src="../../static/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js" th:src="@{/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js}"></script>
+	<!-- BOOTSTRAP -->
+	<script src="../../static/bootstrap-dist/js/bootstrap.min.js" th:src="@{/bootstrap-dist/js/bootstrap.min.js}"></script>	
+
+	<!--validator-->
+	
+	<script  src="js/jquery-validate/jquery.validate.min.js" th:src="@{/js/jquery-validate/jquery.validate.min.js}"></script>
+	<script  src="js/jquery-validate/additional-methods.min.js" th:src="@{/js/jquery-validate/additional-methods.min.js}"></script>
+	<script  th:src="@{/js/emeForms.js}"></script>
+	
+
+	
+	<!-- DATA TABLES -->
+
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" ></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js" ></script>
+
+
+
+	<!-- CUSTOM SCRIPT -->
+	<script src="../../static/js/script.js" th:src="@{/js/script.js}"></script>
+	
+	<script th:src="@{/js/handsontable/handsontable.full.min.js}"/>
+
+    <script th:src="@{/js/mcaClient.js}"/>
+    <script th:src="@{/js/jalert.js}"/>
+	</div>
+	
+	<script>
+		jQuery(document).ready(function() {		
+			App.init(); 
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

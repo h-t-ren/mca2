@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/m-layout :: headFragment">
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="navbar clearfix navbar-fixed-top" id="header"
+		th:include="fragments/m-layout :: headerFragment"> </header>
+	<!--/HEADER -->
+
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<div id="sidebar" class="sidebar"
+			th:include="fragments/m-layout :: sidebarFragment"></div>
+		<!-- /SIDEBAR -->
+		<!-- maincontent -->
+		<div id="main-content"
+			th:include="fragments/m-layout :: main-contentFragment">
+			<!-- BREADCRUMBS -->
+			<ul class="breadcrumb" id="BREADCRUMBS">
+				<li><i class="fa fa-home"></i> <a href="index.html"  th:href="@{/}">Problems</a></li>
+			</ul>
+			<!-- /BREADCRUMBS -->
+ 
+			<!-- mainContentBox -->
+			<div id="mainContentBox">
+			
+			<div id="example"></div>
+			 <button name="load" id="load">Load</button>
+			</div>
+		</div>
+		<!-- /maincontent -->
+	</section>
+	<!--/PAGE -->
+	
+	<input type="hidden" id="problemId" name="problemId" th:value="${problemId}" />
+	
+	<div th:fragment="footerFragment">
+    <footer class="footer navbar-fixed-bottom">
+
+     <ul class="nav navbar navbar-nav">
+				
+				
+				  <li class="dropdown">
+						<a href="problemUpload.html" th:href="@{/problemUpload}" class="dropdown-toggle">
+							<span><i class="fa fa-upload"></i>
+							Load Problem</span>
+						</a>
+				  </li>
+		 </ul>
+             
+<!--              <a href="problemUpload.html"  th:href="@{/problemUpload}">Load Problem</a> -->
+
+    </footer>
+    </div>
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<div th:include="fragments/m-layout :: jsFragment"></div>
+	<script>
+		jQuery(document).ready(function() {		
+			App.init(); //Initialise plugins and elements
+			App.handleHandsonTables();
+			
+			
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

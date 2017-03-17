@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/m-layout :: headFragment">
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="navbar clearfix navbar-fixed-top" id="header"
+		th:include="fragments/m-layout :: headerFragment"> </header>
+	<!--/HEADER -->
+
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<div id="sidebar" class="sidebar"
+			th:include="fragments/m-layout :: sidebarFragment"></div>
+		<!-- /SIDEBAR -->
+		<!-- maincontent -->
+		<div id="main-content"
+			th:include="fragments/m-layout :: main-contentFragment">
+			<!-- BREADCRUMBS -->
+			<ul class="breadcrumb" id="BREADCRUMBS">
+				<li><i class="fa fa-home"></i> <a href="/problems.html"  th:href="@{/}">Problems</a></li>
+			</ul>
+			<!-- /BREADCRUMBS -->
+ 
+			<!-- mainContentBox -->
+			<div id="mainContentBox">
+			
+			<div class="box border blue">
+			<div class="box-title"><h4>Problem List</h4>
+			<ul  style="list-style-type:none" class="pull-right">			 
+			<li class="dropdown">
+						<a href="problemUpload.html" th:href="@{/problemUpload}" class="dropdown-toggle">
+							<span><i class="fa fa-upload"></i>
+							Load Problem</span>
+						</a>
+			 </li></ul>
+			</div>
+			<div class="box-body">
+			
+			 <div class="tabbable header-tabs">
+									<table cellpadding="0" cellspacing="0" border="0" class="exportdatatable datatable table table-striped table-bordered table-hover" width="100%">
+											<thead>
+												<tr>
+													<th>ID</th>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Date</th>
+													<th>Operation</th>
+													<th>Instances</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="p : ${problems}">
+													<td th:text="${p.idPrblm}">ID</td>
+													<td th:text="${p.nm}">name</td>
+													<td th:text="${p.dscr}">Description</td>
+													<td th:text="${#dates.format(p.created,'yyyy/MM/dd')}">">creation date</td>
+													<td>
+													<a href="#" th:href="@{/problemView(problemId=${p.idPrblm},view=view)}"><i class="fa  fa-file-text-o"></i><span>View</span></a>
+													<a class="deleteproblem"  href="#"><i class="fa fa-minus-square-o"></i><span th:id="${p.idPrblm}">Delete</span></a>   
+													
+													<!-- href="#" th:href="@{/problemDelete(problemId=${p.idPrblm})}" -->
+													</td>
+													<td>
+													<a href="#" th:href="@{/instances(problemId=${p.idPrblm})}"><i class="fa  fa-files-o"></i><span>Instances</span></a>
+													</td>
+												</tr>
+									
+											</tbody>
+											
+										</table>
+				</div>
+			  </div>
+			  </div>
+			</div>
+			<!-- /mainContentBox -->
+		</div>
+		<!-- /maincontent -->
+	</section>
+	<!--/PAGE -->
+	<div th:include="fragments/m-layout :: footerFragment"></div>
+<!-- 	<div th:fragment="footerFragment">
+    <footer class="footer navbar-fixed-bottom">
+
+     <ul class="nav navbar navbar-nav">
+				
+				
+				  <li class="dropdown">
+						<a href="problemUpload.html" th:href="@{/problemUpload}" class="dropdown-toggle">
+							<span><i class="fa fa-upload"></i>
+							Load Problem</span>
+						</a>
+				  </li>
+		 </ul>
+             
+    </footer>
+    </div> -->
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<div th:include="fragments/m-layout :: jsFragment"></div>
+	<script>
+		jQuery(document).ready(function() {		
+		 App.init(); //Initialise plugins and elements
+		  $(".deleteproblem").click(function(event){	        
+		  dalert.ReplaceConfirm();
+          confirm("Are you sure to delete this problem?","Delete problem confirm !",function(result){
+          if(result){
+              location.href = "/mca/problemDelete?problemId="+event.target.id;
+           }
+           else{
+           }
+           });
+		 })
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

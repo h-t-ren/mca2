@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/m-layout :: headFragment">
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="navbar clearfix navbar-fixed-top" id="header"
+		th:include="fragments/m-layout :: headerFragment"> </header>
+	<!--/HEADER -->
+
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<div id="sidebar" class="sidebar"
+			th:include="fragments/m-layout :: sidebarFragment"></div>
+		<!-- /SIDEBAR -->
+		<!-- maincontent -->
+		<div id="main-content"
+			th:include="fragments/m-layout :: main-contentFragment">
+			<!-- BREADCRUMBS -->
+			<ul class="breadcrumb" id="BREADCRUMBS">
+				<li><i class="fa fa-home"></i> <a href="/index.html"  th:href="@{/}">Problems</a></li>
+			</ul>
+			<!-- /BREADCRUMBS -->
+ 
+			<!-- mainContentBox -->
+			<div id="mainContentBox">
+			
+					<div class="box border blue">
+			       <div class="box-title"><h4  th:text="'View problem: '+${problem.snm}"></h4>
+			       </div>
+				    <div class="box-body">
+				     <div class="well" >
+				     <h4  th:text="${problem.snm}"></h4> 
+				     <div th:text="${problem.dscr}">
+				     </div>
+				     <div id="problemVls"></div>
+				     </div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!-- /maincontent -->
+	</section>
+	<!--/PAGE -->
+	
+	<input type="hidden" id="problemId" name="problemId" th:value="${problemId}" />
+	
+    <div th:include="fragments/m-layout :: footerFragment"></div>
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<div th:include="fragments/m-layout :: jsFragment"></div>
+	<script>
+		jQuery(document).ready(function() {		
+			App.init(); //Initialise plugins and elements
+			App.handleHandsonTables();
+			
+			
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

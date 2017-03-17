@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering SYSTEM "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+   <type-mapping>
+     <sql-type jdbc-type="INTEGER" hibernate-type="Long"/>
+    </type-mapping>
+    <table-filter match-name="acs" exclude="true" />  
+    <table-filter match-name="acs2" exclude="true" /> 
+     <table-filter match-name="acs_lg" exclude="true" />
+     <table-filter match-name="acs_lgx" exclude="true" /> 
+     
+     <table-filter match-name="athntctn" exclude="true" />  
+     <table-filter match-name="athntctn_usr" exclude="true" />  
+      <table-filter match-name="athntctn_usr_lg" exclude="true" />  
+     
+      <table-filter match-name="cntr" exclude="true" /> 
+      
+      <table-filter match-name="db_sts" exclude="true" /> 
+      
+      <table-filter match-name="edt_sts" exclude="true" /> 
+      
+       
+      <table-filter match-name="lbl" exclude="true" />  
+      <table-filter match-name="lbl_dtl" exclude="true" />
+      <table-filter match-name="lbl_lcl" exclude="true" />
+      
+      <table-filter match-name="lbl_lcl_lg" exclude="true" />
+      <table-filter match-name="lbl_lg" exclude="true" />
+      
+      <table-filter match-name="lcl" exclude="true" />  
+       <table-filter match-name="lng" exclude="true" /> 
+        <table-filter match-name="msg" exclude="true" /> 
+        <table-filter match-name="msg_lcl" exclude="true" />
+        <table-filter match-name="msg_lcl_lg" exclude="true" />
+        <table-filter match-name="msg_lg" exclude="true" />
+        
+         <table-filter match-name="obj_tp" exclude="true" />  
+          <table-filter match-name="obj_tp_srvc" exclude="true" /> 
+           <table-filter match-name="obj_tp_srvc_rl" exclude="true" /> 
+            <table-filter match-name="obj_tp_srvc_rl_lg" exclude="true" /> 
+ 
+         
+         
+             <table-filter match-name="rl" exclude="true" /> 
+         <table-filter match-name="sn" exclude="true" />
+          <table-filter match-name="srvc" exclude="true" />
+            
+            
+               <table-filter match-name="usr_grp" exclude="true"  />
+                  <table-filter match-name="usr_grp_grp" exclude="true"  />
+                     <table-filter match-name="usr_grp_grp_lg" exclude="true"  />
+                        <table-filter match-name="usr_grp_lg" exclude="true"  />
+                           <table-filter match-name="usr_grp_usr" exclude="true"  />
+                              <table-filter match-name="usr_lg" exclude="true"  />
+      
+    <table-filter match-name=".*" package="bs.ecust.domain.db" />
+</hibernate-reverse-engineering>

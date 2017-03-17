@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/m-layout :: headFragment">
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="navbar clearfix navbar-fixed-top" id="header"
+		th:include="fragments/m-layout :: headerFragment"> </header>
+	<!--/HEADER -->
+
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<div id="sidebar" class="sidebar"
+			th:include="fragments/m-layout :: sidebarFragment"></div>
+		<!-- /SIDEBAR -->
+		<!-- maincontent -->
+		<div id="main-content"
+			th:include="fragments/m-layout :: main-contentFragment">
+			<!-- BREADCRUMBS -->
+				<ul class="breadcrumb" id="BREADCRUMBS">
+				<li><i class="fa fa-home"></i> <a href="/problems.html"  th:href="@{/}">Problems</a></li>
+			    <li><a href="/instance.html"  th:href="@{/instances(problemId=${problem.idPrblm})}">Instances</a></li>
+			</ul>
+			<!-- /BREADCRUMBS -->
+      
+			<!-- mainContentBox -->
+			<div id="mainContentBox">
+			<form id="instanceForm" method="post" class="form-horizontal" role="form" th:action="@{/saveInstance}" th:object="${tmpInstance}">
+			<div class="box border blue">
+			<div class="box-title"><h4 th:text="'Problem: '+${problem.snm} +' > Create an instance'"></h4>
+				<ul  style="list-style-type:none" class="pull-right">			 
+			       <li class="dropdown">
+			       
+						<a href="javascript:$('#instanceForm').submit();" class="dropdown-toggle">
+							<span><i class="fa fa-save"></i>
+							Save instance</span>
+						</a>
+			       </li></ul>
+			</div>
+		  <div class="box-body">
+				 <div class="form-group">
+				  <label for="shrtnm" class="col-sm-1 control-label">Name*:</label>
+					<div class="col-sm-10">
+					  <input type="text" class="form-control" id="shrtnm" name="shrtnm" placeholder="less than 16 characters"></input>
+					</div>
+				</div>
+			    <div class="form-group">
+				 <label for="dscrptn" class="col-sm-1 control-label">Note:</label>
+				 <div class="col-sm-10">
+				  <input type="text" class="form-control" id="dscrptn" name="dscrptn" placeholder="enter the instance description"></input>
+				</div>
+			  </div>
+			  
+			 <div class="tabbable header-tabs">
+									<table cellpadding="0" cellspacing="0" border="0" class="exportdatatable datatable table table-striped table-bordered table-hover" width="100%">
+											<thead>
+												<tr>
+													<th>Attribute</th>
+													<th>Short name</th>
+													<th>Long name</th>
+													<th>Type</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="a : ${attributes}">
+													<td>
+                                                     <label class="checkbox-inline"> 
+                                                     <input type="checkbox" name="atrbtIds" class="uniform" th:value="${a.idAtrbt}" th:text="${a.snm}" /></label> 
+                                                    </td>
+													<td><input type="text" name="crtrnSnms" class="uniform" th:value="${a.snm}" /></td>
+													<td><input type="text" name="crtrnNms" class="uniform" th:value="${a.nm}" /></td>
+													<td>
+													 <input type="hidden" name="types" th:id="'type'+${a.idAtrbt}" />
+												     <label class="radio-inline"> <input type="radio" class="uniform" th:name="'type'+${a.idAtrbt}" value="MAX">MAX</input></label> 
+												     <label class="radio-inline"> <input type="radio" class="uniform" th:name="'type'+${a.idAtrbt}" value="MIN"> MIN</input></label>										
+													</td>
+												
+												</tr>
+									
+											</tbody>
+											
+										</table>			  
+			  
+			  </div>
+			  
+			  
+		   
+		  </div>
+			</div>
+			 <input  type="hidden" th:field="*{problemId}" /> 
+			 </form>
+			</div>
+			
+		</div>
+		<!-- /main-content-->
+		
+	</section>
+	<!--/PAGE -->
+	
+	<input type="hidden" id="problemId" name="problemId" th:value="${problemId}" />
+	
+    <div th:include="fragments/m-layout :: footerFragment"></div>
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<div th:include="fragments/m-layout :: jsFragment"></div>
+	<script>
+		jQuery(document).ready(function() {		
+			App.init(); //Initialise plugins and elements
+			$(':radio').click(function(event){	
+				var tid = event.target.name;
+				var vl = event.target.value;
+				$('#'+tid).val(vl);
+            });
+			
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

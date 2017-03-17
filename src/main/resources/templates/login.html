@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/m-layout :: headFragment">
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="navbar clearfix navbar-fixed-top" id="header"
+		th:include="fragments/m-layout :: headerFragment"> </header>
+	<!--/HEADER -->	
+	<!-- PAGE -->
+	<section id="page">
+			<!-- HEADER -->
+			<header>
+		
+			</header>
+			<!--/HEADER -->
+			<!-- LOGIN -->
+			<section id="login" class="visible">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div class="login-box-plain">
+								<h2 class="bigintro">Sign In</h2>
+								<div class="divide-40"></div>
+								<form role="form" th:action="@{/login}" action="/login" method="post">
+								  <div class="form-group">
+									<label for="username">Login</label>
+									<i class="fa fa-user"></i>
+									<input id="username" name="username" class="form-control"  value="hongtao"/>
+								  </div>
+								  <div class="form-group"> 
+									<label for="password">Password</label>
+									<i class="fa fa-lock"></i>
+									<input type="password" id="password" name="password" value="hongtao" class="form-control" />
+								  </div>
+								  <div class="form-actions">
+									<button type="submit" class="btn btn-danger">Submit</button>
+								  </div>
+								</form>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--/LOGIN -->
+	</section>	
+    <div th:include="fragments/m-layout :: footerFragment"></div>
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<div th:include="fragments/m-layout :: jsFragment"></div>
+	<script>
+		jQuery(document).ready(function() {		
+			App.init(); //Initialise plugins and elements
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

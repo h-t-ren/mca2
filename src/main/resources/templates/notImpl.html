@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/m-layout :: headFragment">
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="navbar clearfix navbar-fixed-top" id="header"
+		th:include="fragments/m-layout :: headerFragment"> </header>
+	<!--/HEADER -->
+
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<div id="sidebar" class="sidebar"
+			th:include="fragments/m-layout :: sidebarFragment"></div>
+		<!-- /SIDEBAR -->
+		<!-- maincontent -->
+		<div id="main-content"
+			th:include="fragments/m-layout :: main-contentFragment">
+			<!-- BREADCRUMBS -->
+			<ul class="breadcrumb" id="BREADCRUMBS">
+				<li><i class="fa fa-home"></i> <a href="problems.html" th:href="@{/}">Problems</a></li>
+				<li><a href="notImpl.html" th:href="@{/notImpl}">Not implemented</a></li>
+			</ul>
+			<!-- /BREADCRUMBS -->
+         
+          <!-- mainContentBox -->
+           <div id="mainContentBox">
+			<div class="box border red">
+				<div class="box-title">
+					<h4>
+						<i class="fa fa-calendar"></i>Not implemented
+					</h4>
+					<div class="tools">
+						<a href="javascript:;" class="collapse"> <i
+							class="fa fa-chevron-up"></i>
+						</a>
+					</div>
+				</div>
+				<div class="box-body"> 
+				   <h3>Not implemented...</h3>
+				</div>
+
+			</div>
+		</div>
+			<!-- /mainContentBox -->
+		</div>
+		<!-- /maincontent -->
+	</section>
+	<!--/PAGE -->
+	
+	<div th:include="fragments/m-layout :: footerFragment"></div>
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<div th:include="fragments/m-layout :: jsFragment"></div>
+	<script>
+		jQuery(document).ready(function() {		
+			//App.setPage("widgets_box");  //Set current page ???
+			App.init(); //Initialise plugins and elements
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>
