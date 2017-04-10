@@ -23,6 +23,7 @@ import bs.ecust.domain.db.Atrbt;
 import bs.ecust.domain.db.Instnc;
 import bs.ecust.domain.db.Prblm;
 import bs.ecust.repository.AtrbtRepository;
+import bs.ecust.repository.CrtrnRepository;
 import bs.ecust.repository.InstncRepository;
 import bs.ecust.repository.PrblmRepository;
 import bs.ecust.service.FileMeta;
@@ -43,13 +44,14 @@ import cs.ecust.domain.view.TmpPrblm;
  *
  */
 @Controller
+@Transactional(readOnly = true)
 public class InstanceController {
 	
 	private static final Log logger = LogFactory.getLog(InstanceController.class);
 	
 	@Autowired private PrblmRepository prblmRepository;
 	@Autowired
-	private ProblemLoader problemLoader;
+	private CrtrnRepository crtrnRepository;
 	
 	@Autowired
 	private InstncRepository instncRepository;
@@ -65,7 +67,7 @@ public class InstanceController {
 	public String instances(
 			@RequestParam(value = "problemId") Long problemId,
 			Map<String, Object> model) {
-		List<Instnc> instances =instncRepository.findByProblemId(problemId);
+		List<Instnc> instances =instncRepository.findByProblemIdAndPblsh(problemId,StatusEnum.COMMITTED.getStatusCode());
 		Prblm problem = prblmRepository.findOne(problemId);
 		model.put("problem", problem);
 		model.put("instances", instances);
@@ -87,12 +89,35 @@ public class InstanceController {
 		return "instanceForm";
 	}
 	
+	@RequestMapping("/instanceView")
+	public String instanceView(
+			@RequestParam(value = "problemId") Long problemId,
+			@RequestParam(value = "instanceId") Long instanceId,
+			Map<String, Object> model) {
+		Instnc instnc = instncRepository.findOne(instanceId);
+		model.put("problem", instnc.getPrblm());
+		model.put("instance", instnc);
+		model.put("criteria", crtrnRepository.findByInstanceId(instanceId));
+		return "instanceView";
+	}
+	
 	@Transactional(readOnly = false)
 	@RequestMapping(value="/saveInstance",method=RequestMethod.POST)
 	public String saveInstance(@ModelAttribute("tmpInstance") TmpInstance tmpInstance,
 			Map<String, Object> model) {
 		instanceService.saveTmpInstance(tmpInstance);
 		return "redirect:/instances?problemId="+tmpInstance.getProblemId();
+	}
+	
+	@RequestMapping("/instanceDelete")
+	@Transactional(readOnly = false)
+	public String instanceDelete(
+			@RequestParam(value = "instanceId") Long instanceId,
+			Map<String, Object> model) {
+			Instnc instnc = instncRepository.findOne(instanceId);
+			instnc.setPblsh(StatusEnum.DELETETED.getStatusCode());
+			instncRepository.save(instnc);
+			return "redirect:/instances?problemId="+instnc.getPrblm().getIdPrblm();
 	}
 
 }

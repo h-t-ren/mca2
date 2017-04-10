@@ -92,7 +92,7 @@
 									<ul class="breadcrumb" th:include=":: #BREADCRUMBS">
 										<li>
 											<i class="fa fa-home"></i>
-											<a href="index.html" th:href="@{/}" >主页</a>
+											<a href="index.html" th:href="@{/}" >Home Page</a>
 										</li>
 										
 									</ul>
@@ -121,7 +121,7 @@
 	</section>
 	<div th:fragment="footerFragment">
     <footer class="footer navbar-fixed-bottom">
-     <div id="footer_d" class="container text-right">
+     <div id="footer_d" class="container text-center">
              Copyright © mca.com All Rights Reserved, 2015-
      </div>
     </footer>
@@ -150,10 +150,13 @@
 	
 	<!-- DATA TABLES -->
 
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" ></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js" ></script>
+<!-- <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" ></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js" ></script> -->
 
-
+<!-- <script  th:src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js" ></script>
+	<script  th:src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js" ></script> -->
+    <!-- overlib for jfreechart -->
+    <script th:src="@{/js/overlib/overlib.js}"/>
 
 	<!-- CUSTOM SCRIPT -->
 	<script src="../../static/js/script.js" th:src="@{/js/script.js}"></script>

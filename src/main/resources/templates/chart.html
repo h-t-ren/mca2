@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/m-layout :: headFragment">
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="navbar clearfix navbar-fixed-top" id="header"
+		th:include="fragments/m-layout :: headerFragment"> </header>
+	<!--/HEADER -->
+
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<div id="sidebar" class="sidebar"
+			th:include="fragments/m-layout :: sidebarFragment"></div>
+		<!-- /SIDEBAR -->
+		<!-- maincontent -->
+		<div id="main-content"
+			th:include="fragments/m-layout :: main-contentFragment">
+			<!-- BREADCRUMBS -->
+			<ul class="breadcrumb" id="BREADCRUMBS">
+				<li><i class="fa fa-home"></i> <a href="/problems.html"  th:href="@{/}">Problems</a></li>
+			</ul>
+			<!-- /BREADCRUMBS -->
+ 
+			<!-- mainContentBox -->
+			<div id="mainContentBox">
+			
+			<div class="box border blue">
+			<div class="box-title"><h4>Problem List</h4>
+
+			</div>
+			<div class="box-body">
+			
+			 <img th:src="@{/generarteChart}"></img>
+			  </div>
+			  </div>
+			</div>
+			<!-- /mainContentBox -->
+		</div>
+		<!-- /maincontent -->
+	</section>
+	<!--/PAGE -->
+	<div th:include="fragments/m-layout :: footerFragment"></div>
+<!-- 	<div th:fragment="footerFragment">
+    <footer class="footer navbar-fixed-bottom">
+
+     <ul class="nav navbar navbar-nav">
+				
+				
+				  <li class="dropdown">
+						<a href="problemUpload.html" th:href="@{/problemUpload}" class="dropdown-toggle">
+							<span><i class="fa fa-upload"></i>
+							Load Problem</span>
+						</a>
+				  </li>
+		 </ul>
+             
+    </footer>
+    </div> -->
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<div th:include="fragments/m-layout :: jsFragment"></div>
+	<script>
+		jQuery(document).ready(function() {		
+		 App.init(); //Initialise plugins and elements
+		  $(".deleteproblem").click(function(event){	        
+		  dalert.ReplaceConfirm();
+          confirm("Are you sure to delete this problem?","Delete problem confirm !",function(result){
+          if(result){
+              location.href = "/mca/problemDelete?problemId="+event.target.id;
+           }
+           else{
+           }
+           });
+		 })
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

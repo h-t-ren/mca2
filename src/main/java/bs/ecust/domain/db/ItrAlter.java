@@ -24,7 +24,7 @@ public class ItrAlter  implements java.io.Serializable {
 
      private ItrAlterId id;
      private Altrntv altrntv;
-     private Atrbt atrbt;
+     private Crtrn crtrn;
      private Itr itr;
      private Long pos;
      private Float caf;
@@ -33,26 +33,25 @@ public class ItrAlter  implements java.io.Serializable {
     }
 
 	
-    public ItrAlter(ItrAlterId id, Altrntv altrntv, Atrbt atrbt, Itr itr) {
+    public ItrAlter(ItrAlterId id, Altrntv altrntv, Crtrn crtrn, Itr itr) {
         this.id = id;
         this.altrntv = altrntv;
-        this.atrbt = atrbt;
+        this.crtrn = crtrn;
         this.itr = itr;
     }
-    public ItrAlter(ItrAlterId id, Altrntv altrntv, Atrbt atrbt, Itr itr, Long pos, Float caf) {
+    public ItrAlter(ItrAlterId id, Altrntv altrntv,  Crtrn crtrn, Itr itr, Long pos, Float caf) {
        this.id = id;
        this.altrntv = altrntv;
-       this.atrbt = atrbt;
+       this.crtrn = crtrn;
        this.itr = itr;
        this.pos = pos;
        this.caf = caf;
     }
    
      @EmbeddedId
-    
     @AttributeOverrides( {
         @AttributeOverride(name="idItr", column=@Column(name="id_itr", nullable=false) ), 
-        @AttributeOverride(name="idAtrbt", column=@Column(name="id_atrbt", nullable=false) ), 
+        @AttributeOverride(name="idCrtrn", column=@Column(name="id_crtrn", nullable=false) ), 
         @AttributeOverride(name="idAltrntv", column=@Column(name="id_altrntv", nullable=false) ) } )
     public ItrAlterId getId() {
         return this.id;
@@ -71,13 +70,13 @@ public class ItrAlter  implements java.io.Serializable {
         this.altrntv = altrntv;
     }
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_atrbt", nullable=false, insertable=false, updatable=false)
-    public Atrbt getAtrbt() {
-        return this.atrbt;
+    @JoinColumn(name="id_crtrn", nullable=false, insertable=false, updatable=false)
+    public Crtrn getCrtrn() {
+        return this.crtrn;
     }
     
-    public void setAtrbt(Atrbt atrbt) {
-        this.atrbt = atrbt;
+    public void setCrtrn(Crtrn crtrn) {
+        this.crtrn = crtrn;
     }
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="id_itr", nullable=false, insertable=false, updatable=false)

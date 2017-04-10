@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/m-layout :: headFragment">
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="navbar clearfix navbar-fixed-top" id="header"
+		th:include="fragments/m-layout :: headerFragment"> </header>
+	<!--/HEADER -->
+
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<div id="sidebar" class="sidebar"
+			th:include="fragments/m-layout :: sidebarFragment"></div>
+		<!-- /SIDEBAR -->
+		<!-- maincontent -->
+		<div id="main-content"
+			th:include="fragments/m-layout :: main-contentFragment">
+			<!-- BREADCRUMBS -->
+			<ul class="breadcrumb" id="BREADCRUMBS">
+				<li><i class="fa fa-home"></i> <a href="/problems.html"  th:href="@{/}">Problems</a></li>
+			    <li><a href="/instance.html"  th:href="@{/instances(problemId=${problem.idPrblm})}">Instances</a></li>
+			    <li><a href="/analyses.html"  th:href="@{/analyses(problemId=${problem.idPrblm},instanceId=${instance.idInstnc})}">Analyses</a></li>
+			</ul>
+			<!-- /BREADCRUMBS -->
+ 
+			<!-- mainContentBox -->
+			<div id="mainContentBox">
+				<div class="box border blue">
+			       <div class="box-title"><h4  th:text="'Problem: '+${problem.snm}+' > Instance: ' +${instance.snm} +' > analyses' "></h4>
+			      <ul  style="list-style-type:none" class="pull-right">			 
+			       <li class="dropdown">
+						<a href="analysisForm.html" th:href="@{/analysisForm(problemId=${problem.idPrblm},instanceId=${instance.idInstnc})}" class="dropdown-toggle">
+							<span><i class="fa fa-plus"></i>
+							Create Analysis</span>
+						</a>
+			       </li></ul>
+			      
+			       </div>
+				    <div class="box-body">
+			        <div class="tabbable header-tabs">
+									<table cellpadding="0" cellspacing="0" border="0" class="exportdatatable datatable table table-striped table-bordered table-hover" width="100%">
+											<thead>
+												<tr>
+													<th>ID</th>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Date</th>
+													<th>Operation</th>
+													<th>Iterations</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="a : ${analyses}">
+													<td th:text="${a.idAnlz}">ID</td>
+													<td th:text="${a.nm}">name</td>
+													<td th:text="${a.dscr}">Description</td>
+													<td th:text="${#dates.format(a.created,'yyyy/MM/dd')}">">creation date</td>
+													<td>
+													<a class="deleteanalysis"  href="#"><i class="fa fa-minus-square-o"></i><span th:id="${a.idAnlz}">Delete</span></a>   
+													</td>
+													<td>
+													<a href="#" th:href="@{/iterations(problemId=${problem.idPrblm},instanceId=${instance.idInstnc},analysisId=${a.idAnlz})}"><i class="fa  fa-files-o"></i><span>Iterations</span></a>
+													</td>
+												</tr>
+									
+											</tbody>
+											
+										</table>
+				</div>
+			</div>
+			</div>
+			</div>
+			<!-- /mainContentBox -->
+		</div>
+		<!-- /maincontent -->
+	</section>
+	<!--/PAGE -->
+	
+	<div th:include="fragments/m-layout :: footerFragment"></div>
+
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<div th:include="fragments/m-layout :: jsFragment"></div>
+	<script>
+		jQuery(document).ready(function() {		
+		 App.init(); //Initialise plugins and elements
+		  $(".deleteanalysis").click(function(event){	        
+		  dalert.ReplaceConfirm();
+          confirm("Are you sure to delete this analysis?","Delete Anlaysis confirm !",function(result){
+          if(result){
+              location.href = "/mca/analysisDelete?analysisId="+event.target.id;
+           }
+           else{
+           }
+           });
+		 })
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

@@ -1,9 +1,15 @@
 package bs.ecust;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jfree.chart.servlet.DisplayChart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -56,5 +62,17 @@ public class McaApplication {
 //		}
 	
 	
+	}
+	
+	@Bean
+	public ServletRegistrationBean getDisplayChartServlet(){
+		DisplayChart displayChart=new DisplayChart();
+		ServletRegistrationBean registrationBean=new ServletRegistrationBean();
+		registrationBean.setServlet(displayChart);
+		List<String> urlMappings=new ArrayList<String>();
+		urlMappings.add("/servlet/DisplayChart");////访问，可以添加多个
+		registrationBean.setUrlMappings(urlMappings);
+		registrationBean.setLoadOnStartup(1);
+		return registrationBean;
 	}
 }

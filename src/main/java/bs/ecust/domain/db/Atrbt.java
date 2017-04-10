@@ -34,21 +34,12 @@ public class Atrbt  implements java.io.Serializable {
      private String unit;
      private Set<Crtrn> crtrns = new HashSet<Crtrn>(0);
      private Set<AltrntvVl> altrntvVls = new HashSet<AltrntvVl>(0);
-     private Set<ItrAlter> itrAlters = new HashSet<ItrAlter>(0);
+
 
     public Atrbt() {
     }
 
-    public Atrbt(Prblm prblm, String snm, String nm, String dscr, String unit, Set<Crtrn> crtrns, Set<AltrntvVl> altrntvVls, Set<ItrAlter> itrAlters) {
-       this.prblm = prblm;
-       this.snm = snm;
-       this.nm = nm;
-       this.dscr = dscr;
-       this.unit = unit;
-       this.crtrns = crtrns;
-       this.altrntvVls = altrntvVls;
-       this.itrAlters = itrAlters;
-    }
+
    
      @Id @GeneratedValue(strategy=IDENTITY)
     
@@ -120,14 +111,6 @@ public class Atrbt  implements java.io.Serializable {
     
     public void setAltrntvVls(Set<AltrntvVl> altrntvVls) {
         this.altrntvVls = altrntvVls;
-    }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="atrbt")
-    public Set<ItrAlter> getItrAlters() {
-        return this.itrAlters;
-    }
-    
-    public void setItrAlters(Set<ItrAlter> itrAlters) {
-        this.itrAlters = itrAlters;
     }
 
 

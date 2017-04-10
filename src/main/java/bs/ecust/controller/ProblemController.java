@@ -36,6 +36,7 @@ import cs.ecust.domain.view.TmpPrblm;
  *
  */
 @Controller
+@Transactional(readOnly = true)
 public class ProblemController {
 	
 	private static final Log logger = LogFactory.getLog(ProblemController.class);
@@ -84,6 +85,7 @@ public class ProblemController {
 	
 	
 	@RequestMapping("/problemDelete")
+	@Transactional(readOnly = false)
 	public String problemDelete(
 			@RequestParam(value = "problemId") Long problemId,
 			Map<String, Object> model) {
@@ -118,8 +120,6 @@ public class ProblemController {
 	}
 	
 	
-	
-	@Transactional(readOnly = true)
 	@RequestMapping(value="/api/getAlternativeVls", method=RequestMethod.GET)
 	public @ResponseBody String[][] getAlternativeVls(@RequestParam("problemId") Long problemId)
 	{

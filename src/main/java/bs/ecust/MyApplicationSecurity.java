@@ -44,6 +44,8 @@ public class MyApplicationSecurity extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/bootstrap-dist/**","/css/**","/font-awesome/**","/frontend_theme/**","/img/**","/js/**").permitAll()
 		.antMatchers(HttpMethod.OPTIONS,"/**").permitAll();
 		http.authorizeRequests().antMatchers("/api/factorvalues/**").permitAll();
+		http.authorizeRequests().antMatchers("/servlet/**").permitAll();
+		
 		//.hasIpAddress("192.168.0/24");
 		http.authorizeRequests().antMatchers("/login").permitAll().anyRequest()
 		.fullyAuthenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/", true)

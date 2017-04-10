@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/m-layout :: headFragment">
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="navbar clearfix navbar-fixed-top" id="header"
+		th:include="fragments/m-layout :: headerFragment"> </header>
+	<!--/HEADER -->
+
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<div id="sidebar" class="sidebar"
+			th:include="fragments/m-layout :: sidebarFragment"></div>
+		<!-- /SIDEBAR -->
+		<!-- maincontent -->
+		<div id="main-content"
+			th:include="fragments/m-layout :: main-contentFragment">
+			<!-- BREADCRUMBS -->
+				<ul class="breadcrumb" id="BREADCRUMBS">
+				<li><i class="fa fa-home"></i> <a href="/problems.html"  th:href="@{/}">Problems</a></li>
+			    <li><a href="/instance.html"  th:href="@{/instances(problemId=${problem.idPrblm})}">Instances</a></li>
+			</ul>
+			<!-- /BREADCRUMBS -->
+      
+			<!-- mainContentBox -->
+			<div id="mainContentBox">
+			
+			<div class="box border blue">
+			<div class="box-title"><h4 th:text="'Problem: '+${problem.snm} +' > Instance: ' +${instance.snm}"></h4>
+			</div>
+		   <div class="box-body">
+			  <h4 th:text="${instance.snm}"></h4>
+			  <h4 th:text="${instance.dscr}"></h4>
+			  <h4>Criteria:</h4>
+			  <ul class="list-unstyled">
+			    <div th:each="c : ${criteria}">
+				<li><h5 th:text="${c.nm}+', type: ' +${c.type} +', attribute: ' + ${c.atrbt.nm}"></h5></li>
+			    </div>
+			  </ul>
+			
+			  
+		  </div>
+			</div>
+			</div>
+			
+		</div>
+		<!-- /main-content-->
+		
+	</section>
+	<!--/PAGE -->
+	
+    <div th:include="fragments/m-layout :: footerFragment"></div>
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<div th:include="fragments/m-layout :: jsFragment"></div>
+	<script>
+		jQuery(document).ready(function() {		
+			App.init(); //Initialise plugins and elements
+			$(':radio').click(function(event){	
+				var tid = event.target.name;
+				var vl = event.target.value;
+				$('#'+tid).val(vl);
+            });
+			
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>

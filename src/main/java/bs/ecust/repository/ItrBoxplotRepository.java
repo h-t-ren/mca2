@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import bs.ecust.domain.db.Atrbt;
 import bs.ecust.domain.db.Crtrn;
+import bs.ecust.domain.db.ItrBoxplot;
+import bs.ecust.domain.db.ItrBoxplotId;
 
 
-public interface CrtrnRepository  extends JpaRepository<Crtrn, Long> {
-	
-	@Query("select c from Crtrn c where c.instnc.idInstnc=?1 order by c.seq asc")
-	public List<Crtrn> findByInstanceId(Long instanceId);
+public interface ItrBoxplotRepository  extends JpaRepository<ItrBoxplot, ItrBoxplotId> {
+
 }

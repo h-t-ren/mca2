@@ -46,6 +46,7 @@ public class Crtrn  implements java.io.Serializable {
      private Set<Crtrn> crtrns = new HashSet<Crtrn>(0);
      private Set<ItrBoxplot> itrBoxplots = new HashSet<ItrBoxplot>(0);
      private Set<ItrDots> itrDotses = new HashSet<ItrDots>(0);
+     private Set<ItrAlter> itrAlters = new HashSet<ItrAlter>(0);
 
     public Crtrn() {
     }
@@ -251,6 +252,14 @@ public class Crtrn  implements java.io.Serializable {
         this.itrDotses = itrDotses;
     }
 
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="crtrn")
+    public Set<ItrAlter> getItrAlters() {
+        return this.itrAlters;
+    }
+    
+    public void setItrAlters(Set<ItrAlter> itrAlters) {
+        this.itrAlters = itrAlters;
+    }
 
 
 

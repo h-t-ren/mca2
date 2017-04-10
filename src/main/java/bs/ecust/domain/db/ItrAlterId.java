@@ -13,15 +13,15 @@ public class ItrAlterId  implements java.io.Serializable {
 
 
      private Long idItr;
-     private Long idAtrbt;
+     private Long idCrtrn;
      private Long idAltrntv;
 
     public ItrAlterId() {
     }
 
-    public ItrAlterId(Long idItr, Long idAtrbt, Long idAltrntv) {
+    public ItrAlterId(Long idItr, Long idCrtrn, Long idAltrntv) {
        this.idItr = idItr;
-       this.idAtrbt = idAtrbt;
+       this.idCrtrn = idCrtrn;
        this.idAltrntv = idAltrntv;
     }
    
@@ -35,13 +35,13 @@ public class ItrAlterId  implements java.io.Serializable {
         this.idItr = idItr;
     }
 
-    @Column(name="id_atrbt", nullable=false)
-    public Long getIdAtrbt() {
-        return this.idAtrbt;
+    @Column(name="id_crtrn", nullable=false)
+    public Long getIdCrtrn() {
+        return this.idCrtrn;
     }
     
-    public void setIdAtrbt(Long idAtrbt) {
-        this.idAtrbt = idAtrbt;
+    public void setIdCrtrn(Long idCrtrn) {
+        this.idCrtrn = idCrtrn;
     }
 
     @Column(name="id_altrntv", nullable=false)
@@ -61,7 +61,7 @@ public class ItrAlterId  implements java.io.Serializable {
 		 ItrAlterId castOther = ( ItrAlterId ) other; 
          
 		 return ( (this.getIdItr()==castOther.getIdItr()) || ( this.getIdItr()!=null && castOther.getIdItr()!=null && this.getIdItr().equals(castOther.getIdItr()) ) )
- && ( (this.getIdAtrbt()==castOther.getIdAtrbt()) || ( this.getIdAtrbt()!=null && castOther.getIdAtrbt()!=null && this.getIdAtrbt().equals(castOther.getIdAtrbt()) ) )
+ && ( (this.getIdCrtrn()==castOther.getIdCrtrn()) || ( this.getIdCrtrn()!=null && castOther.getIdCrtrn()!=null && this.getIdCrtrn().equals(castOther.getIdCrtrn()) ) )
  && ( (this.getIdAltrntv()==castOther.getIdAltrntv()) || ( this.getIdAltrntv()!=null && castOther.getIdAltrntv()!=null && this.getIdAltrntv().equals(castOther.getIdAltrntv()) ) );
    }
    
@@ -69,7 +69,7 @@ public class ItrAlterId  implements java.io.Serializable {
          int result = 17;
          
          result = 37 * result + ( getIdItr() == null ? 0 : this.getIdItr().hashCode() );
-         result = 37 * result + ( getIdAtrbt() == null ? 0 : this.getIdAtrbt().hashCode() );
+         result = 37 * result + ( getIdCrtrn() == null ? 0 : this.getIdCrtrn().hashCode() );
          result = 37 * result + ( getIdAltrntv() == null ? 0 : this.getIdAltrntv().hashCode() );
          return result;
    }   

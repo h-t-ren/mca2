@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/m-layout :: headFragment">
+</head>
+<body>
+	<!-- HEADER -->
+	<header class="navbar clearfix navbar-fixed-top" id="header"
+		th:include="fragments/m-layout :: headerFragment"> </header>
+	<!--/HEADER -->
+
+	<!-- PAGE -->
+	<section id="page">
+		<!-- SIDEBAR -->
+		<div id="sidebar" class="sidebar"
+			th:include="fragments/m-layout :: sidebarFragment"></div>
+		<!-- /SIDEBAR -->
+		<!-- maincontent -->
+		<div id="main-content"
+			th:include="fragments/m-layout :: main-contentFragment">
+			<!-- BREADCRUMBS -->
+		 <ul class="breadcrumb" id="BREADCRUMBS">
+		       <li><i class="fa fa-home"></i> <a href="/problems.html"  th:href="@{/}">Problems</a></li>
+			    <li><a href="/instance.html"  th:href="@{/instances(problemId=${problem.idPrblm})}">Instances</a></li>
+			    <li><a href="/analyses.html"  th:href="@{/analyses(problemId=${problem.idPrblm},instanceId=${instance.idInstnc})}">Analyses</a></li>
+	        </ul>
+			<!-- /BREADCRUMBS -->
+      
+			<!-- mainContentBox -->
+			<div id="mainContentBox">
+			<form id="analysisForm" method="post" class="form-horizontal" role="form" th:action="@{/saveAnalysis}" th:object="${tmpAnlz}">
+			<div class="box border blue">
+		    <div class="box-title"><h4  th:text="'Problem: '+${problem.snm}+' > Instance: ' +${instance.snm} +' > create analysis' "></h4>
+				<ul  style="list-style-type:none" class="pull-right">			 
+			       <li class="dropdown">
+						<a href="javascript:$('#analysisForm').submit();" class="dropdown-toggle">
+							<span><i class="fa fa-save"></i>
+							Save analysis</span>
+						</a>
+			       </li></ul>
+			</div>
+		  <div class="box-body">
+				 <div class="form-group">
+				  <label for="shrtnm" class="col-sm-1 control-label">Short name*:</label>
+					<div class="col-sm-10">
+					  <input type="text" class="form-control" th:field="*{shrtnm}" placeholder="less than 16 characters"></input>
+					</div>
+				</div>
+			    <div class="form-group">
+				 <label for="dscrptn" class="col-sm-1 control-label">Name:</label>
+				 <div class="col-sm-10">
+				  <input type="text" th:field="*{lngnm}" class="form-control" placeholder="less than 32 characters"></input>
+				</div>
+			  </div>
+			     <div class="form-group">
+				 <label for="dscrptn" class="col-sm-1 control-label">Description:</label>
+				 <div class="col-sm-10">
+				  <input type="text" class="form-control"  th:field="*{dscrptn}" placeholder="less than 256 characters"></input>
+				</div>
+			  </div>
+			  
+		   
+		  </div>
+			</div>
+			 <input  type="hidden" th:field="*{problemId}" /> 
+			 <input  type="hidden" th:field="*{instanceId}" /> 
+			 </form>
+			</div>
+			
+		</div>
+		<!-- /main-content-->
+		
+	</section>
+	<!--/PAGE -->
+	
+	<input type="hidden" id="problemId" name="problemId" th:value="${problemId}" />
+	
+    <div th:include="fragments/m-layout :: footerFragment"></div>
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<div th:include="fragments/m-layout :: jsFragment"></div>
+	<script>
+		jQuery(document).ready(function() {		
+			App.init(); //Initialise plugins and elements
+			$(':radio').click(function(event){	
+				var tid = event.target.name;
+				var vl = event.target.value;
+				$('#'+tid).val(vl);
+            });
+			
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>
